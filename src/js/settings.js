@@ -13,7 +13,7 @@ class Settings {
     if (this.availableSettings.get('theme').has(theme)) {
       this._settings.set('theme', theme);
     } else {
-      throw new Error('wrong theme')
+      throw new Error('wrong theme');
     }
   }
 
@@ -21,7 +21,7 @@ class Settings {
     if (this.availableSettings.get('music').has(music)) {
       this._settings.set('music', music);
     } else {
-      throw new Error('wrong music')
+      throw new Error('wrong music');
     }
   }
 
@@ -29,11 +29,9 @@ class Settings {
     if (this.availableSettings.get('difficulty').has(difficulty)) {
       this._settings.set('difficulty', difficulty);
     } else {
-      throw new Error('wrong difficulty')
+      throw new Error('wrong difficulty');
     }
   }
-
-
 
   get settings() {
     return this._settings;
