@@ -1,15 +1,17 @@
 class Settings {
-  constructor(availableSettings, defaultSettings, theme, music, difficulty) {
+  constructor(availableSettings, defaultSettings) {
     this.availableSettings = availableSettings;
-    this._settings = defaultSettings;
-    this._theme = theme || defaultSettings.get('theme');
-    this._music = music || defaultSettings.get('music');
-    this._difficulty = difficulty || defaultSettings.get('difficulty');
+    // no need to clone, since this.availableSettings
+    // is never changed
+    this._settings = new Map(defaultSettings);
+    // here the defaultSettings Map is cloned,
+    // otherwise it will be mutated,
+    // when this._settings is changed
   }
 
   set theme(theme) {
     if (this.availableSettings.get('theme').has(theme)) {
-      this._theme = theme;
+      this._settings.set('theme', theme);
     } else {
       throw new Error('wrong theme')
     }
@@ -17,28 +19,24 @@ class Settings {
 
   set music(music) {
     if (this.availableSettings.get('music').has(music)) {
-      this._music = music;
+      this._settings.set('music', music);
     } else {
       throw new Error('wrong music')
     }
   }
 
-  set theme(difficulty) {
+  set difficulty(difficulty) {
     if (this.availableSettings.get('difficulty').has(difficulty)) {
-      this._difficulty = difficulty;
+      this._settings.set('difficulty', difficulty);
     } else {
       throw new Error('wrong difficulty')
     }
   }
 
+
+
   get settings() {
-    // this._settings.set(theme, this._theme);
-    return {
-      ...this._settings,
-      theme: this._theme,
-      music: this._music,
-      difficulty: this._difficulty
-    };
+    return this._settings;
   }
 }
 
