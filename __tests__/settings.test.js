@@ -10,8 +10,8 @@ const defaultSettings = new Map(
   [...availableSettings].map(setting => [setting[0], [...setting[1]][0]]),
 );
 
-describe('CHECKING DEFAULT AND AVAILABLE SETTINGS', () => {
-  test('check default values', () => {
+describe('TESTING DEFAULT AND AVAILABLE SETTINGS', () => {
+  test('testing default values', () => {
     const settings = new Settings(availableSettings, defaultSettings);
     const result = settings.settings;
     const expected = new Map([
@@ -23,7 +23,7 @@ describe('CHECKING DEFAULT AND AVAILABLE SETTINGS', () => {
     expect(result).toEqual(expected);
   });
 
-  test('check available values for music and difficulty', () => {
+  test('testing available values for music and difficulty', () => {
     const settings = new Settings(availableSettings, defaultSettings);
     settings.music = 'off';
     settings.difficulty = 'nightmare';
@@ -37,7 +37,7 @@ describe('CHECKING DEFAULT AND AVAILABLE SETTINGS', () => {
     expect(result).toEqual(expected);
   });
 
-  test('check default values', () => {
+  test('testing available value for theme', () => {
     const settings = new Settings(availableSettings, defaultSettings);
     settings.theme = 'light';
     const result = settings.settings;
